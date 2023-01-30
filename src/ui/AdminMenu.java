@@ -39,7 +39,7 @@ public class AdminMenu {
             System.out.println("----------------------------------------------");
             System.out.println("Please select a number for the menu option");
 
-             selectedOption = userInput.nextLine();
+            selectedOption = userInput.nextLine();
 
             switch (selectedOption) {
                 case "1":
@@ -106,10 +106,21 @@ public class AdminMenu {
         Collection<IRoom> rooms = adminResource.getAllRooms();
 
         String roomNumber;
+        boolean isRoomNumberDuplicate;
+        boolean isRoomNumberEmpty;
         do {
             System.out.println("Enter room number");
             roomNumber = userInput.nextLine();
-        } while (Utility.isRoomNumberDuplicate(rooms, roomNumber) || roomNumber.isBlank());
+            isRoomNumberDuplicate = Utility.isRoomNumberDuplicate(rooms, roomNumber);
+            isRoomNumberEmpty = roomNumber.isBlank();
+
+            if (isRoomNumberDuplicate) {
+                System.out.println("The room number you entered exists already.");
+            }
+            else if (isRoomNumberEmpty) {
+                System.out.println("Room number cannot be an empty string.");
+            }
+        } while (isRoomNumberDuplicate || isRoomNumberEmpty);
 
         String roomPriceString;
         do {

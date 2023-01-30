@@ -34,9 +34,19 @@ public class Utility {
         return pattern.matcher(email).matches();
     }
 
+    public static boolean isRoomAvailableForReservation(Collection<IRoom> rooms, String roomNumber) {
+        for (IRoom room : rooms) {
+            if (room.getRoomNumber().equals(roomNumber)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static boolean isRoomNumberDuplicate(Collection<IRoom> rooms, String roomNumber) {
         for (IRoom room : rooms) {
-            if (room.getRoomNumber() == roomNumber) {
+            if (room.getRoomNumber().equals(roomNumber)) {
                 return true;
             }
         }

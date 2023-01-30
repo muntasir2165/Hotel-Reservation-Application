@@ -119,7 +119,9 @@ public class MainMenu {
                 room = hotelResource.getRoom(roomNumber);
                 if (room == null) {
                     System.out.println("Invalid room number");
-                } else {
+                } else if (!Utility.isRoomAvailableForReservation(rooms, roomNumber)) {
+                    System.out.println("The room number your entered is not available for reservation.");
+                }else {
                     isRoomNumberValid = true;
                 }
             } while (!isRoomNumberValid);
