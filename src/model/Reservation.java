@@ -36,10 +36,10 @@ public class Reservation {
     @Override
     public String toString() {
         return "Reservation\n" +
-                this.customer.getFirstName() + this.customer.getLastName() + "\n" +
+                this.customer.getFirstName() + " " + this.customer.getLastName() + "\n" +
                 "Room: " + this.room.getRoomNumber() + " - " + this.room.getRoomType() + " bed\n" +
                 "Price: $" + this.room.getRoomPrice() + " price per night\n" +
-                "Checkin Date: " + new SimpleDateFormat("E MMM dd yyyy").format(this.checkInDate) +
+                "Checkin Date: " + new SimpleDateFormat("E MMM dd yyyy").format(this.checkInDate) + "\n" +
                 "Checkout Date: " + new SimpleDateFormat("E MMM dd yyyy").format(this.checkOutDate);
     }
 }

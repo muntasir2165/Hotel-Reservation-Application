@@ -17,7 +17,7 @@ public class Utility {
 
     public static Date stringToDate(String dateString) {
         Date date;
-        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd//yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         try {
             date = formatter.parse(dateString);
         } catch (Exception e) {

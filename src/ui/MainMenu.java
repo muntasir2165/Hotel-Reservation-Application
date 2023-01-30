@@ -80,15 +80,20 @@ public class MainMenu {
 
         System.out.println("Rooms available for reservations:");
         Collection<IRoom> rooms = hotelResource.findARoom(checkInDate, checkOutDate);
-        for (IRoom room : rooms) {
-            System.out.println(room);
+        if (rooms.isEmpty()){
+            System.out.println("No room is currently available for reservation");
+            return;
+        } else{
+            for (IRoom room : rooms) {
+                System.out.println(room);
+            }
         }
 
         String doesUserHaveAccount;
         do {
             System.out.println("Do you have an account with us? y/n");
             doesUserHaveAccount = userInput.nextLine();
-        } while (!doesUserHaveAccount.toLowerCase().equals("y") || !doesUserHaveAccount.toLowerCase().equals("n"));
+        } while (!doesUserHaveAccount.toLowerCase().equals("y") && !doesUserHaveAccount.toLowerCase().equals("n"));
 
         if (doesUserHaveAccount.toLowerCase().equals("n")) {
             System.out.println("Please use the menu option no. 3 to create an account and then try reserving a room");
@@ -171,6 +176,8 @@ public class MainMenu {
         } while (lastName.isBlank());
 
         HotelResource.createACustomer(customerEmail, firstName, lastName);
+
+        System.out.println("Yay! You now have an account in the app!");
     }
 
 }

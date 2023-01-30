@@ -14,7 +14,8 @@ public class ReservationService {
     private static final Collection<Reservation> reservations = new ArrayList<Reservation>();
     private static final Collection<IRoom> rooms = new ArrayList<IRoom>();
 
-    private ReservationService() {}
+    private ReservationService() {
+    }
 
     public static ReservationService getInstance() {
         if (INSTANCE == null) {
@@ -30,9 +31,9 @@ public class ReservationService {
 
     public static IRoom getARoom(String roomId) {
         IRoom result = null;
-        for (IRoom room: rooms) {
+        for (IRoom room : rooms) {
             if (room.getRoomNumber().equals(roomId)) {
-                result =  room;
+                result = room;
                 break;
             }
         }
@@ -52,26 +53,26 @@ public class ReservationService {
         return reservation;
     }
 
-    public static Collection<IRoom> findRooms(Date checkInDate, Date checkoutDate){
+    public static Collection<IRoom> findRooms(Date checkInDate, Date checkoutDate) {
         Collection<IRoom> availableRooms = new ArrayList<IRoom>();
         Collection<IRoom> unavailableRooms = new ArrayList<IRoom>();
 
         // Find rooms in current reservations which will be available for the specified check in and check out dates
-        for (Reservation reservation: reservations) {
-           IRoom room = reservation.getRoom();
-           Date currentRoomCheckInDate = reservation.getCheckInDate();
-           Date currentRoomCheckOutDate = reservation.getCheckOutDate();
+        for (Reservation reservation : reservations) {
+            IRoom room = reservation.getRoom();
+            Date currentRoomCheckInDate = reservation.getCheckInDate();
+            Date currentRoomCheckOutDate = reservation.getCheckOutDate();
 
-           if (checkInDate.after(checkInDate) && checkoutDate.after(currentRoomCheckOutDate)) {
-               availableRooms.add(room);
-           } else {
-               unavailableRooms.add(room);
-           }
+            if (checkInDate.after(currentRoomCheckInDate) && checkoutDate.after(currentRoomCheckOutDate)) {
+                availableRooms.add(room);
+            } else {
+                unavailableRooms.add(room);
+            }
         }
 
         // Find rooms that are currently not reserved
-        for (IRoom room : rooms ) {
-            if (!availableRooms.contains(room) && unavailableRooms.contains(room) ) {
+        for (IRoom room : rooms) {
+            if (!availableRooms.contains(room) && !unavailableRooms.contains(room)) {
                 availableRooms.add(room);
             }
         }
