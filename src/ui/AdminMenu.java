@@ -102,7 +102,7 @@ public class AdminMenu {
         }
     }
 
-    private IRoom getRoomAttributes() {
+    private IRoom getRoomAttributes(Collection<IRoom> newRooms) {
         Collection<IRoom> rooms = adminResource.getAllRooms();
 
         String roomNumber;
@@ -111,7 +111,7 @@ public class AdminMenu {
         do {
             System.out.println("Enter room number");
             roomNumber = userInput.nextLine();
-            isRoomNumberDuplicate = Utility.isRoomNumberDuplicate(rooms, roomNumber);
+            isRoomNumberDuplicate = Utility.isRoomNumberDuplicate(rooms, roomNumber) || Utility.isRoomNumberDuplicate(newRooms, roomNumber);
             isRoomNumberEmpty = roomNumber.isBlank();
 
             if (isRoomNumberDuplicate) {
@@ -148,7 +148,7 @@ public class AdminMenu {
         String shouldAddAnotherRoom = "y";
         do {
             if (shouldAddAnotherRoom.toLowerCase().equals("y")) {
-                IRoom room = getRoomAttributes();
+                IRoom room = getRoomAttributes(newRooms);
                 newRooms.add(room);
             }
 

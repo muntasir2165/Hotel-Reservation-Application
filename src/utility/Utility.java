@@ -3,6 +3,7 @@ package utility;
 import model.IRoom;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -25,6 +26,14 @@ public class Utility {
         }
 
         return date;
+    }
+
+    public static Date incrementDateByDays(Date date, int daysToIncrement) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, daysToIncrement);
+
+        return cal.getTime();
     }
 
     public static boolean isEmailValid(String email) {

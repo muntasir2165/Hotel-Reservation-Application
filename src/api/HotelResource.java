@@ -15,7 +15,8 @@ public class HotelResource {
     private static final CustomerService customerService = CustomerService.getInstance();
     private static final ReservationService reservationService = ReservationService.getInstance();
 
-    private HotelResource() {}
+    private HotelResource() {
+    }
 
     public static HotelResource getInstance() {
         if (INSTANCE == null) {
@@ -46,20 +47,7 @@ public class HotelResource {
     }
 
     public Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
-        Collection<IRoom> availableRooms  = ReservationService.findRooms(checkInDate, checkOutDate);
-
-        if (availableRooms.isEmpty()) {
-            availableRooms = ReservationService.findRooms(incrementDateByDays(checkInDate, 7), incrementDateByDays(checkOutDate, 7));
-        }
-
-        return availableRooms;
+        return ReservationService.findRooms(checkInDate, checkOutDate);
     }
 
-    private static Date incrementDateByDays(Date date, int daysToIncrement) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.DATE, daysToIncrement);
-
-        return cal.getTime();
-    }
 }

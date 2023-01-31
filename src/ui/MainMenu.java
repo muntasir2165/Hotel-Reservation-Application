@@ -81,7 +81,18 @@ public class MainMenu {
         System.out.println("Rooms available for reservations:");
         Collection<IRoom> rooms = hotelResource.findARoom(checkInDate, checkOutDate);
         if (rooms.isEmpty()){
-            System.out.println("No room is currently available for reservation");
+            System.out.println("No room is currently available for reservation for the specified date range");
+
+            Date recommendedCheckInDate = Utility.incrementDateByDays(checkInDate, 7);
+            Date recommendedCheckOutDate = Utility.incrementDateByDays(checkOutDate, 7);
+            Collection<IRoom> alternativeRooms = hotelResource.findARoom(recommendedCheckInDate, recommendedCheckOutDate);
+            if (!alternativeRooms.isEmpty()) {
+                System.out.println("The following rooms are available for reservation from " + recommendedCheckInDate.toString() + " to " + recommendedCheckOutDate);
+                for (IRoom room : alternativeRooms) {
+                    System.out.println(room);
+                }
+                System.out.println("Please try reserving a room again for the recommended date range");
+            }
             return;
         } else{
             for (IRoom room : rooms) {
