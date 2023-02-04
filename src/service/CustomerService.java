@@ -20,7 +20,7 @@ public class CustomerService {
         return INSTANCE;
     }
 
-    public static void addCustomer(String email, String firstName, String lastName) {
+    public void addCustomer(String email, String firstName, String lastName) {
         try {
             Customer customer = new Customer(firstName, lastName, email);
             customers.add(customer);
@@ -29,7 +29,7 @@ public class CustomerService {
         }
     }
 
-    public static Customer getCustomer(String customerEmail) {
+    public Customer getCustomer(String customerEmail) {
         Customer result = null;
     for (Customer customer: customers) {
         if (customer.getEmail().equals(customerEmail)) {

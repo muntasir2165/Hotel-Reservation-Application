@@ -25,11 +25,11 @@ public class ReservationService {
         return INSTANCE;
     }
 
-    public static void addRoom(IRoom room) {
+    public void addRoom(IRoom room) {
         rooms.add(room);
     }
 
-    public static IRoom getARoom(String roomId) {
+    public IRoom getARoom(String roomId) {
         IRoom result = null;
         for (IRoom room : rooms) {
             if (room.getRoomNumber().equals(roomId)) {
@@ -41,19 +41,19 @@ public class ReservationService {
         return Objects.isNull(result) ? null : result;
     }
 
-    public static Collection<IRoom> getAllRooms() {
+    public Collection<IRoom> getAllRooms() {
         return rooms;
     }
 
 
-    public static Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
+    public Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
         reservations.add(reservation);
 
         return reservation;
     }
 
-    public static Collection<IRoom> findRooms(Date checkInDate, Date checkoutDate) {
+    public Collection<IRoom> findRooms(Date checkInDate, Date checkoutDate) {
         Collection<IRoom> availableRooms = new ArrayList<IRoom>();
         Collection<IRoom> unavailableRooms = new ArrayList<IRoom>();
 
@@ -80,7 +80,7 @@ public class ReservationService {
         return availableRooms;
     }
 
-    public static Collection<Reservation> getCustomerReservation(Customer customer) {
+    public Collection<Reservation> getCustomerReservation(Customer customer) {
         Collection<Reservation> customerReservations = new ArrayList<Reservation>();
         for (Reservation reservation : reservations) {
             if (reservation.getCustomer().equals(customer)) {
@@ -91,7 +91,7 @@ public class ReservationService {
         return customerReservations;
     }
 
-    public static Collection<Reservation> getAllReservations() {
+    public Collection<Reservation> getAllReservations() {
         return reservations;
     }
 }

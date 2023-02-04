@@ -30,24 +30,24 @@ public class HotelResource {
         return customerService.getCustomer(email);
     }
 
-    public static void createACustomer(String email, String firstName, String lastName) {
+    public void createACustomer(String email, String firstName, String lastName) {
         customerService.addCustomer(email, firstName, lastName);
     }
 
     public IRoom getRoom(String roomNumber) {
-        return ReservationService.getARoom(roomNumber);
+        return reservationService.getARoom(roomNumber);
     }
 
     public Reservation bookARoom(String customerEmail, IRoom room, Date checkInDate, Date checkOutDate) {
-        return reservationService.reserveARoom(CustomerService.getCustomer(customerEmail), room, checkInDate, checkOutDate);
+        return reservationService.reserveARoom(customerService.getCustomer(customerEmail), room, checkInDate, checkOutDate);
     }
 
     public Collection<Reservation> getCustomerReservations(String customerEmail) {
-        return reservationService.getCustomerReservation(CustomerService.getCustomer(customerEmail));
+        return reservationService.getCustomerReservation(customerService.getCustomer(customerEmail));
     }
 
     public Collection<IRoom> findARoom(Date checkInDate, Date checkOutDate) {
-        return ReservationService.findRooms(checkInDate, checkOutDate);
+        return reservationService.findRooms(checkInDate, checkOutDate);
     }
 
 }
