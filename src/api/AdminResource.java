@@ -10,9 +10,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class AdminResource {
-    private static AdminResource INSTANCE;
     private static final CustomerService customerService = CustomerService.getInstance();
     private static final ReservationService reservationService = ReservationService.getInstance();
+    private static AdminResource INSTANCE;
 
     private AdminResource() {
     }

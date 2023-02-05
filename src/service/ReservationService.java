@@ -7,12 +7,11 @@ import model.Reservation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Objects;
 
 public class ReservationService {
-    private static ReservationService INSTANCE;
     private static final Collection<Reservation> reservations = new ArrayList<Reservation>();
     private static final Collection<IRoom> rooms = new ArrayList<IRoom>();
+    private static ReservationService INSTANCE;
 
     private ReservationService() {
     }
@@ -38,7 +37,7 @@ public class ReservationService {
             }
         }
 
-        return Objects.isNull(result) ? null : result;
+        return result;
     }
 
     public Collection<IRoom> getAllRooms() {

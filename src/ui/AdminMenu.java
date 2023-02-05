@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class AdminMenu {
     private static AdminMenu INSTANCE;
     private final AdminResource adminResource = AdminResource.getInstance();
-    private Scanner userInput = new Scanner(System.in);
+    private final Scanner userInput = new Scanner(System.in);
 
     public static AdminMenu getInstance() {
         if (INSTANCE == null) {
@@ -116,8 +116,7 @@ public class AdminMenu {
 
             if (isRoomNumberDuplicate) {
                 System.out.println("The room number you entered exists already.");
-            }
-            else if (isRoomNumberEmpty) {
+            } else if (isRoomNumberEmpty) {
                 System.out.println("Room number cannot be an empty string.");
             }
         } while (isRoomNumberDuplicate || isRoomNumberEmpty);
@@ -147,20 +146,18 @@ public class AdminMenu {
 
         String shouldAddAnotherRoom = "y";
         do {
-            if (shouldAddAnotherRoom.toLowerCase().equals("y")) {
+            if (shouldAddAnotherRoom.equalsIgnoreCase("y")) {
                 IRoom room = getRoomAttributes(newRooms);
                 newRooms.add(room);
-            }
 
-            if (shouldAddAnotherRoom.toLowerCase().equals("y")) {
                 System.out.println("Would you like to add another room y/n");
-            } else if (shouldAddAnotherRoom.toLowerCase().equals("n")) {
+            } else if (shouldAddAnotherRoom.equalsIgnoreCase("n")) {
                 break;
             } else {
                 System.out.println("Please enter Y (Yes) or N (No)");
             }
             shouldAddAnotherRoom = userInput.nextLine();
-        } while (!shouldAddAnotherRoom.toLowerCase().equals("n"));
+        } while (!shouldAddAnotherRoom.equalsIgnoreCase("n"));
 
         adminResource.addRoom((List<IRoom>) newRooms);
     }

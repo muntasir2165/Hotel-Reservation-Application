@@ -89,7 +89,7 @@ public class MainMenu {
             checkOutDate = Utility.incrementDateByDays(checkOutDate, 7);
             alternativeRooms = hotelResource.findARoom(checkInDate, checkOutDate);
             if (!alternativeRooms.isEmpty()) {
-                System.out.println("The following rooms are available for reservation from " + checkInDate.toString() + " to " + checkOutDate);
+                System.out.println("The following rooms are available for reservation from " + checkInDate + " to " + checkOutDate);
                 for (IRoom room : alternativeRooms) {
                     System.out.println(room);
                 }

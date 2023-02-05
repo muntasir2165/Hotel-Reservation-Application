@@ -6,14 +6,13 @@ import model.Reservation;
 import service.CustomerService;
 import service.ReservationService;
 
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
 public class HotelResource {
-    private static HotelResource INSTANCE;
     private static final CustomerService customerService = CustomerService.getInstance();
     private static final ReservationService reservationService = ReservationService.getInstance();
+    private static HotelResource INSTANCE;
 
     private HotelResource() {
     }

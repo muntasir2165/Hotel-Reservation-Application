@@ -4,13 +4,13 @@ import model.Customer;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Objects;
 
 public class CustomerService {
-    private static CustomerService INSTANCE;
     private static final Collection<Customer> customers = new ArrayList<Customer>();
+    private static CustomerService INSTANCE;
 
-    private CustomerService() {}
+    private CustomerService() {
+    }
 
     public static CustomerService getInstance() {
         if (INSTANCE == null) {
@@ -18,6 +18,10 @@ public class CustomerService {
         }
 
         return INSTANCE;
+    }
+
+    public Collection<Customer> getAllCustomers() {
+        return customers;
     }
 
     public void addCustomer(String email, String firstName, String lastName) {
@@ -31,17 +35,13 @@ public class CustomerService {
 
     public Customer getCustomer(String customerEmail) {
         Customer result = null;
-    for (Customer customer: customers) {
-        if (customer.getEmail().equals(customerEmail)) {
-            result =  customer;
-            break;
+        for (Customer customer : customers) {
+            if (customer.getEmail().equals(customerEmail)) {
+                result = customer;
+                break;
+            }
         }
-    }
 
-    return Objects.isNull(result) ? null : result;
-    }
-
-    public static Collection<Customer> getAllCustomers() {
-        return customers;
+        return result;
     }
 }
